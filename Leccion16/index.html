@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inicio Javascript</title>
+    <style>
+      .azul {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body onload="entrar()">
+    <h1
+      id="cabecero"
+      onmousedown="rojo(this)"
+      onmouseup="azul(this)"
+      onclick="verder(this)"
+    >
+      Hola Mundo
+    </h1>
+    <p id="parrafo" class="azul">Ejecicio de Javascript</p>
+    <p id="parrafo2" class="azul">Otro parrafo</p>
+    <div id="mostrar"></div>
+    <br />
+    Nombre:
+    <input
+      type="text"
+      id="nombre"
+      onchange="convertir(this)"
+      onfocus="cambiar(this)"
+      onblur="regresar(this)"
+    />
+    <br />
+    Apellido: <input type="text" id="apellido" onchange="convertir(this)" />
+
+    <br />
+    <br />
+    <form id="forma">
+      Nombre: <input type="text" id="nombreForma" /> <br /><br />
+      Apellido: <input type="text" id="apellidoForma" />
+    </form>
+
+    <script>
+      let cabecero = document.getElementById("cabecero");
+      let parrafo = document.getElementById("parrafo");
+      console.log(`valor cabecero: ${cabecero.innerHTML}`);
+      console.log("valor del parrafo: " + parrafo.innerHTML);
+      console.log("Saludos desde Javascript");
+
+      parrafo.innerHTML = "Parrafo nuevo";
+      cabecero.innerHTML = "Titulo nuevo";
+
+      // Obtener todos los parrafos
+      // let parrafos = document.getElementsByTagName('p');
+      let parrafos = document.getElementsByClassName("azul");
+      console.log(parrafos.length);
+      for (let i = 0; i < parrafos.length; i++) {
+        console.log(parrafos[i].innerHTML);
+      }
+
+      function entrar() {
+        alert("Entrando a la pagina web");
+        let texto = "";
+        if (navigator.cookieEnabled) {
+          texto = "Cookies habilitadas";
+        } else {
+          texto = "Cookies no habilitadas";
+        }
+        document.getElementById("mostrar").innerHTML = texto;
+      }
+
+      function convertir(nombreInput) {
+        nombreInput.value = nombreInput.value.toUpperCase();
+      }
+
+      function rojo(titulo) {
+        titulo.style.color = "red";
+      }
+
+      function azul(titulo) {
+        titulo.style.color = "blue";
+      }
+      function verder(titulo) {
+        titulo.style.color = "green";
+      }
+      function cambiar(elementoInput) {
+        elementoInput.style.background = "yellow";
+      }
+      function regresar(elementoInput) {
+        elementoInput.style.background = "white";
+      }
+
+      document
+        .getElementById("apellido")
+        .addEventListener(
+          "focus",
+          (evento) => (evento.target.style.background = "yellow")
+        );
+      document.getElementById("apellido").addEventListener("blur", regresar2);
+
+      function cambiar2(evento) {
+        let componente = evento.target;
+        componente.style.background = "yellow";
+      }
+      function regresar2(evento) {
+        let componente = evento.target;
+        componente.style.background = "white";
+      }
+
+      const forma = document.getElementById("forma");
+
+      forma.addEventListener(
+        "focus",
+        (evento) => (evento.target.style.background = "yellow"),
+        true
+      );
+      forma.addEventListener(
+        "blur",
+        (evento) => (evento.target.style.background = "blue"),
+        true
+      );
+    </script>
+  </body>
+</html>
